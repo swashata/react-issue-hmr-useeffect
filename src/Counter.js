@@ -34,6 +34,7 @@ const Counter = () => {
     document.title = `(${count}) ${docTitle}`;
     return () => {
       console.log(`Reseting title to "${docTitle}"`);
+      console.log(`Stored ref title "${initialDocTitle.current}"`);
       document.title = docTitle;
     };
   }, [count]);
