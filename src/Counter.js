@@ -24,9 +24,14 @@ const Counter = () => {
 
   // change document title if count changes
   useEffect(() => {
-    const docTitle = initialDocTitle.current;
+    // this doesn't work, initialDocTitle gets messed up on re-render
+    // const docTitle = initialDocTitle.current;
+    // but this works fine, with the proper cleanup
+    const docTitle = document.title;
+    console.log(`Changing title to \`(${count}) ${docTitle}\` on count ${count}`);
     document.title = `(${count}) ${docTitle}`;
     return () => {
+      console.log(`Reseting title to ${docTitle}`);
       document.title = docTitle;
     };
   }, [count]);
@@ -34,7 +39,7 @@ const Counter = () => {
   return (
     <div>
       <p>
-        Count is: <code>{count}</code>
+        Count is:: <code>{count}</code>
       </p>
       <button
         type="button"
