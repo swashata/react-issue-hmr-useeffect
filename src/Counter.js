@@ -20,7 +20,9 @@ const Counter = () => {
   const { count } = state;
   // get initial document.title and persist it
   // based on initial title, so we use useRef
+  console.log(`Current title "${document.title}"`);
   const initialDocTitle = useRef(document.title);
+  console.log(`Stored ref title "${initialDocTitle.current}"`);
 
   // change document title if count changes
   useEffect(() => {
@@ -28,10 +30,10 @@ const Counter = () => {
     // const docTitle = initialDocTitle.current;
     // but this works fine, with the proper cleanup
     const docTitle = document.title;
-    console.log(`Changing title to \`(${count}) ${docTitle}\` on count ${count}`);
+    console.log(`Changing title to "(${count}) ${docTitle}" on count ${count}`);
     document.title = `(${count}) ${docTitle}`;
     return () => {
-      console.log(`Reseting title to ${docTitle}`);
+      console.log(`Reseting title to "${docTitle}"`);
       document.title = docTitle;
     };
   }, [count]);
